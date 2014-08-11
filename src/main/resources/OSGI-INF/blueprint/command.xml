@@ -7,6 +7,9 @@
         <command name="sample/findBundleInFeatures">
             <action class="com.example.karaf.command.FindBundleInFeaturesCommand"/>
         </command>
+        <command name="sample/checkFabricEnsemble">
+            <action class="com.example.karaf.command.CheckFabricEnsembleCommand"/>
+        </command>
     </command-bundle>
 
 </blueprint>
