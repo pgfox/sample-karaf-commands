@@ -25,6 +25,9 @@ public class FindBundleInFeaturesCommand extends OsgiCommandSupport {
     @Option(name = "-v", aliases = "-verbose", description = "Shows output from search", required = false, multiValued = false)
     boolean verbose = false;
 
+    @Option(name = "-a", aliases = "-allFeatures", description = "search all available features (not just installed features)", required = false, multiValued = false)
+    boolean allFeatures = false;
+
     protected Object doExecute() throws Exception {
         // Get repository admin service.
         ServiceReference ref = getBundleContext().getServiceReference(FeaturesService.class.getName());
@@ -49,8 +52,18 @@ public class FindBundleInFeaturesCommand extends OsgiCommandSupport {
 
     protected void doExecute(FeaturesService featuresService) throws Exception {
         try {
-            Feature[] features = featuresService.listInstalledFeatures();
-            System.out.println("Number of Features installed: " + features.length);
+
+            Feature[] features;
+
+            if (allFeatures){
+                features = featuresService.listFeatures();
+                System.out.println("Number of Features available: " + features.length);
+            }else{
+                features = featuresService.listInstalledFeatures();
+                System.out.println("Number of Features installed: " + features.length);
+            }
+
+
 
             LinkedList<String> breadcrumb = new LinkedList<String>();
 
