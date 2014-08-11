@@ -119,6 +119,7 @@ public class FindBundleInFeaturesCommand extends OsgiCommandSupport {
                 if (verbose) {
                     System.out.println("FOUND Bundle: " + bundleInfo.getLocation());
                 }
+                breadcrumb.addLast(bundleInfo.getLocation());
                 addlocation(breadcrumb);
             }
         }
@@ -150,8 +151,8 @@ public class FindBundleInFeaturesCommand extends OsgiCommandSupport {
         }
 
         System.out.println("Bundle " + targetBundle + " found in the following features:");
-        for (String location : foundLocationList) {
-            System.out.println(location);
+        for (int i=0; i<foundLocationList.size(); i++) {
+            System.out.println(i+": "+foundLocationList.get(i));
         }
 
     }
