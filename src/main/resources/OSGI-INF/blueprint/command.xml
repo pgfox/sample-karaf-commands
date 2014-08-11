@@ -4,6 +4,9 @@
         <command name="sample/listBundlesInFeatures">
             <action class="com.example.karaf.command.ListBundlesInFeaturesCommand"/>
         </command>
+        <command name="sample/findBundleInFeatures">
+            <action class="com.example.karaf.command.FindBundleInFeaturesCommand"/>
+        </command>
     </command-bundle>
 
 </blueprint>
