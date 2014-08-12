@@ -20,9 +20,9 @@ osgi:install -s mvn:com.example.karaf.command/sample-karaf-command
 Using
 =====
 
-- sample:listbundlesinfeatures - lists all the features installed on the karaf container recursively (to bundle level)
+- **sample:listbundlesinfeatures** - lists all the features installed on the karaf container recursively (to bundle level)
 
-- sample:findbundleinfeatures bundlelocation - find the features (defaults to installed on the karaf container) that include specified bundle. Specifing the -a flag searches all features available on the container e.g. 
+- **sample:findbundleinfeatures bundlelocation** - find the features (defaults to installed on the karaf container) that include specified bundle. Specifing the -a flag searches all features available on the container e.g. 
 
 ```java
  sample:findbundleinfeatures mvn:org.apache.cxf/cxf-rt-ws-mex/2.6.0.redhat-60024
@@ -48,9 +48,9 @@ Bundle mvn:org.apache.cxf/cxf-rt-ws-mex/2.6.0.redhat-60024 found in the followin
 6: servicemix-cxf-se >> servicemix-cxf-bc >> fabric-cxf >> cxf-ws-mex >> cxf-nmr >> camel-cxf >> cxf >> cxf-ws-mex >> mvn:org.apache.cxf/cxf-rt-ws-mex/2.6.0.redhat-60024
 ```
 
-- sample:checkFabricEnsemble - checks each ensemble server listed in zookeeper.url using the 'ruok' (by default), 'stat' (-s), 'envi' -e. For JBoss Fuse 6.1 and above ONLY
 
-for eg. 
+
+- **sample:checkFabricEnsemble** - checks each ensemble server listed in zookeeper.url using the 'ruok' (by default), 'stat' (-s), 'envi' (-e). For JBoss Fuse 6.1 and above ONLY
 
 ```java
 sample:checkfabricensemble -v -s
