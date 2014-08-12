@@ -64,9 +64,9 @@ RESPONSE: imok
 SEND: stat
 RESPONSE: Zookeeper version: 3.4.5-1392090, built on 09/30/2012 17:52 GMT
 RESPONSE: Clients:
-RESPONSE:  /192.168.1.122:50650[1](queued=0,recved=1642,sent=1651)
-RESPONSE:  /192.168.1.122:50692[0](queued=0,recved=1,sent=0)
-RESPONSE:  /192.168.1.122:50659[1](queued=0,recved=3122,sent=3131)
+RESPONSE:  /XXX.XXX.XXX.XXX:50650[1](queued=0,recved=1642,sent=1651)
+RESPONSE:  /XXX.XXX.XXX.XXX:50692[0](queued=0,recved=1,sent=0)
+RESPONSE:  /XXX.XXX.XXX.XXX:50659[1](queued=0,recved=3122,sent=3131)
 RESPONSE:
 RESPONSE: Latency min/avg/max: 0/0/1447
 RESPONSE: Received: 5455
