@@ -15,11 +15,14 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 
 
-@Command(scope = "sample", name = "checkFabricEnsemble", description = "list all features installed recursively (to bundle level)")
+@Command(scope = "sample", name = "checkFabricEnsemble", description = "checks each ensemble server listed in zookeeper.url " +
+        "using the 'ruok' (by default), 'stat' (-s), 'envi' -e. For JBoss Fuse 6.1 and above ONLY")
 public class CheckFabricEnsembleCommand extends OsgiCommandSupport {
 
     public static final String IO_FABRIC8_ZOOKEEPER = "io.fabric8.zookeeper";
+
     public static final String ZOOKEEPER_URL = "zookeeper.url";
+
     @Option(name = "-v", aliases = "-verbose", description = "Shows detailed output", required = false, multiValued = false)
     boolean verbose = false;
 
@@ -28,6 +31,7 @@ public class CheckFabricEnsembleCommand extends OsgiCommandSupport {
 
     @Option(name = "-e", aliases = "-envi", description = "invoke zookeeper 'envi' command", required = false, multiValued = false)
     private boolean envi = false;
+
 
     protected Object doExecute() throws Exception {
         // Get config admin service.
@@ -46,6 +50,11 @@ public class CheckFabricEnsembleCommand extends OsgiCommandSupport {
 
         String[] urls = getZooKeeperURLs(admin);
 
+
+        if(urls==null){
+            System.out.println("No zookeeper url retrieved.. check ending.");
+            return;
+        }
 
         for (String url : urls) {
 
@@ -84,16 +93,22 @@ public class CheckFabricEnsembleCommand extends OsgiCommandSupport {
 
     private String[] getZooKeeperURLs(ConfigurationAdmin admin) throws IOException {
         // get zookeeper URL
-        Configuration configuration = admin.getConfiguration(IO_FABRIC8_ZOOKEEPER);
+        String zookeeperPID=IO_FABRIC8_ZOOKEEPER;
+
+
+        Configuration configuration = admin.getConfiguration(zookeeperPID);
         Dictionary dictionary = configuration.getProperties();
 
 
         if (verbose) {
-            System.out.println("Contents of PID " + IO_FABRIC8_ZOOKEEPER);
+            System.out.println("Contents of PID " + zookeeperPID);
 
             for (Enumeration e = dictionary.keys(); e.hasMoreElements(); ) {
                 Object key = e.nextElement();
-                System.out.println("   " + key + " = " + dictionary.get(key));
+                //don't print passwords
+                if (!((String) key).contains("password")) {
+                    System.out.println("   " + key + " = " + dictionary.get(key));
+                }
             }
         }
 
@@ -147,15 +162,27 @@ public class CheckFabricEnsembleCommand extends OsgiCommandSupport {
         } finally {
 
             if (out != null) {
-                out.close();
+                try {
+                    out.close();
+                } catch (Exception ex) {
+                    System.out.println("out.close(): " + ex.getMessage());
+                }
             }
 
             if (in != null) {
-                in.close();
+                try {
+                    in.close();
+                } catch (Exception ex) {
+                    System.out.println("in.close(): " + ex.getMessage());
+                }
             }
 
             if (in != null) {
-                socket.close();
+                try {
+                    socket.close();
+                } catch (Exception ex) {
+                    System.out.println("socket.close(): " + ex.getMessage());
+                }
             }
 
         }
