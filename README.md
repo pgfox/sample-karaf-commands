@@ -79,3 +79,11 @@ RESPONSE: Node count: 157
 FINISHED CHECK.
 ````
 
+- **sample:lc**  - simple line count util.  
+```java
+JBossFuse:karaf@root> list | lc
+218
+````
+
+
+
