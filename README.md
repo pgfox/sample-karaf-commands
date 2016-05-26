@@ -3,7 +3,8 @@ WORK IN PROGRESS
 
 Some karaf commands that may be helpful
 
-**NOTE: the commands have had limited/adhoc testing - NOT recommended for use in production.**
+**NOTE: the commands have had limited/adhoc testing - NOT recommended for use in production.** 
+This has not been tested on Fuse 6.2.0
 
 Installing
 ==========
